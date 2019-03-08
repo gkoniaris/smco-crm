@@ -1,0 +1,35 @@
+{
+    "name": "gkon-express-vue-boilerplate",
+    "version": "0.1.0",
+    "main": "index.js",
+    "scripts": {
+        "backend-dev": "nodemon ./backend/src/index.js",
+        "migrate": "./backend/node_modules/.bin/sequelize db:migrate",
+        "migrate:one": "./backend/node_modules/.bin/sequelize db:migrate:one",
+        "migrate:undo": "./backend/node_modules/.bin/sequelize db:migrate:undo",
+        "migrate:undo:all": "./backend/node_modules/.bin/sequelize db:migrate:undo:all",
+        "seed": "./backend/node_modules/.bin/sequelize db:seed:all",
+        "seed:undo": "./backend/node_modules/.bin/sequelize db:seed:undo:all",
+        "frontend-build": "cd frontend && build",
+        "start": "node ./backend/src/index.js",
+        "postinstall": "cd backend && npm install && cd ../frontend && npm install && npm run build"
+    },
+    "dependencies": {
+        "dotenv": "6.2.0",
+        "mysqldump": "^2.2.1",
+        "rollbar": "^2.5.2",
+        "vuejs-paginate": "^2.1.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "3.3.0",
+        "@vue/cli-plugin-eslint": "3.3.0",
+        "@vue/cli-service": "3.3.0",
+        "babel-eslint": "10.0.1",
+        "eslint": "5.8.0",
+        "eslint-plugin-vue": "5.0.0",
+        "faker": "^4.1.0",
+        "nodemon": "1.17.3",
+        "terser": "3.14.1",
+        "vue-template-compiler": "2.5.21"
+    }
+}
