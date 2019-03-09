@@ -66,113 +66,8 @@
                 <div class="col-md-12 mt-4">
                   <label class="font-weight-bold">Γενικά σχόλια:</label>
                   <textarea v-model="device.comments" class="form-control"></textarea>
-                </div>
-                <div class="col-md-12 mt-4" v-if="freezedDate">
-                  <label class="font-weight-bold">Μπήκε σε αναμονή στις:</label>
-                  <input type="date" disabled v-bind:value="freezedDate" class="form-control"/>
-                </div>
-                <div class="col-md-12 mt-4" v-if="closedDate">
-                  <label class="font-weight-bold">Έκλεισε στις:</label>
-                  <input type="date" disabled v-bind:value="closedDate" class="form-control"/>
-                </div>
-                <div class="col-md-12 mt-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="font-weight-bold">Κατάσταση ερώτησης:</label>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn mr-2"
-                    v-bind:class="{'btn-info': device.status === 'open', 'btn-secondary': device.status !== 'open'}"
-                    v-on:click="setField('status', 'open')"
-                    v-bind:disabled="initialDeviceStatus === 'freezed' || initialDeviceStatus === 'closed'"
-                  >Ανοιχτή</button>
-                  <button
-                    type="button"
-                    class="btn mr-2"
-                    v-bind:class="{'btn-info': device.status === 'freezed', 'btn-secondary': device.status !== 'freezed'}"
-                    v-on:click="setField('status', 'freezed')"
-                    v-bind:disabled="initialDeviceStatus === 'closed'"
-                  >Σε αναμονή</button>
-                  <button
-                    type="button"
-                    class="btn mr-2"
-                    v-bind:class="{'btn-info': device.status === 'closed', 'btn-secondary': device.status !== 'closed'}"
-                    v-on:click="setField('status', 'closed')"
-                  >Κλειστή</button>
-                </div>
-                <div class="col-md-12 mt-4" v-if="device.status === 'closed'">
-                  <h5 class="mb-4">After Sales Σχόλια</h5>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="font-weight-bold">Εξυπηρετήθηκε ο πελάτης:</label>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn btn-secondary mr-2"
-                    v-bind:class="{'btn-info': device.completed === true, 'btn-secondary': device.completed === false}"
-                    v-on:click="setField('completed', true)"
-                  >Ναι</button>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.completed === false, 'btn-secondary': device.completed === true}"
-                    v-on:click="setField('completed', false)"
-                  >Όχι</button>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="font-weight-bold">Εμπειρία πελάτη:</label>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.clientHappy === true, 'btn-secondary': device.clientHappy === false}"
-                    v-on:click="setField('clientHappy', true)"
-                  >Θετική</button>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.clientHappy === false, 'btn-secondary': device.clientHappy === true}"
-                    v-on:click="setField('clientHappy', false)"
-                  >Αρνητική</button>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="font-weight-bold">Εμπειρία μαγαζιού:</label>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.shopHappy === true, 'btn-secondary': device.shopHappy === false}"
-                    v-on:click="setField('shopHappy', true)"
-                  >Θετική</button>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.shopHappy === false, 'btn-secondary': device.shopHappy === true}"
-                    v-on:click="setField('shopHappy', false)"
-                  >Αρνητική</button>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="font-weight-bold">Υπήρξε κέρδος;</label>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.profit === true, 'btn-secondary': device.profit === false}"
-                    v-on:click="setField('profit', true)"
-                  >Ναι</button>
-                  <button
-                    type="button"
-                    class="btn mr-2 btn-secondary"
-                    v-bind:class="{'btn-info': device.profit === false, 'btn-secondary': device.profit === true}"
-                    v-on:click="setField('profit', false)"
-                  >Όχι</button>
-                </div>
+                </div>                
+                <StatusChange :entity="device" :initialStatus="initialDeviceStatus" :freezedDate="freezedDate" :closedDate="closedDate"/>
               </div>
               </div>
               <div class="col-md-6">
@@ -185,6 +80,8 @@
           <div class="col-md-12 mt-4">
             <button type="submit" class="btn btn-primary">Ενημέρωση βλάβης</button>
           </div>
+
+          {{device}}
         </div>
       </fieldset>
     </form>
@@ -196,11 +93,12 @@
 <script>
 import DeviceService from "../../services/DeviceService";
 import ClientProfile from "../Clients/Profile";
+import StatusChange from '../Partials/StatusChange'
 import _ from "lodash";
 
 export default {
   name: "ClientsView",
-  components: { ClientProfile },
+  components: { ClientProfile, StatusChange },
   data() {
     return {
       message: null,
@@ -225,9 +123,7 @@ export default {
         this.client = device.client;
       });
     },
-    setField(field, value) {
-      this.device[field] = value;
-    },
+
     update(data) {
       this.$validator
         .validate()
