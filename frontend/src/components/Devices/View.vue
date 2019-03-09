@@ -67,6 +67,14 @@
                   <label class="font-weight-bold">Γενικά σχόλια:</label>
                   <textarea v-model="device.comments" class="form-control"></textarea>
                 </div>
+                <div class="col-md-12 mt-4" v-if="freezedDate">
+                  <label class="font-weight-bold">Μπήκε σε αναμονή στις:</label>
+                  <input type="date" disabled v-bind:value="freezedDate" class="form-control"/>
+                </div>
+                <div class="col-md-12 mt-4" v-if="closedDate">
+                  <label class="font-weight-bold">Έκλεισε στις:</label>
+                  <input type="date" disabled v-bind:value="closedDate" class="form-control"/>
+                </div>
                 <div class="col-md-12 mt-4">
                   <div class="row">
                     <div class="col-md-12">
@@ -198,7 +206,9 @@ export default {
       message: null,
       error: null,
       device: {},
-      initialDeviceStatus: null
+      initialDeviceStatus: null,
+      freezedDate: null,
+      closedDate: null
     };
   },
   methods: {
@@ -210,6 +220,8 @@ export default {
           { profit: null, shopHappy: null, clientHappy: null, completed: null },
           device
         );
+        this.freezedDate = this.device.freezedDate ? this.device.freezedDate.slice(0, 10) : null
+        this.closedDate = this.device.closedDate ? this.device.closedDate.slice(0, 10) : null
         this.client = device.client;
       });
     },
