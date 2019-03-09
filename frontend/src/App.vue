@@ -128,6 +128,7 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  margin-bottom: 25px;
 }
 
 #app.toggled #sidebar-wrapper {
