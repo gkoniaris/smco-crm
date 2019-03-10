@@ -2,7 +2,7 @@ const sequelize = require('../models')
 
 class StatService {
     async get (userId) {
-        await sequelize.query(`SELECT * FROM (
+        return await sequelize.query(`SELECT * FROM (
             (
             SELECT COUNT(*) as openDevicesCount FROM devices
             WHERE devices.status = 'open'
@@ -26,6 +26,7 @@ class StatService {
             const stats = statsArray[0]
             stats.totalDelayedCount = stats.delayedQuestionsCount + stats.delayedDevicesCount
             stats.totalOpenCount = stats.openQuestionsCount + stats.openDevicesCount
+            return stats
         })
     }
 }

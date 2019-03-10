@@ -39,6 +39,7 @@ router.patch('/api/device/:id', validate('body', require('./validators/patch/dev
 router.get('/api/usefulPhone', require('./controllers/UsefulPhoneController').get)
 
 router.get('/api/geolocate', validate('query', require('./validators/get/geolocate.js')), require('./controllers/GeolocateController').address)
+router.get('/api/stats', require('./controllers/StatsController').get)
 
 router.use('/api/', handleError())
 
