@@ -33,6 +33,7 @@ services:
       MYSQL_PASSWORD: kipouros
     ports:
         - 3306:3306
+    volumes:
+      - trouble-ticket-db-volume:/var/lib/mysql
 volumes:
-  pgdata_kipouros:
-    driver: local
+  trouble-ticket-db-volume:
