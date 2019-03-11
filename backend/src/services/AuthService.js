@@ -12,7 +12,7 @@ class AuthService {
         if (user) {
             return await new Promise((resolve, reject) => {
                 bcrypt.compare(password, user.password, (err, result) => {
-                    if (err || !result) throw error
+                    if (err || !result) reject(error)
                     const token = jwt.sign({
                         id: user.id,
                         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), //sign for 24 hours
