@@ -23,14 +23,16 @@ services:
         - 8080:8080
       command: npm run serve
   db:
+    env_file:
+      - .env
     image: mysql:5.6
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: kipouros
-      MYSQL_DATABASE: kipouros
-      MYSQL_USER: kipouros
-      MYSQL_PASSWORD: kipouros
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
     ports:
         - 3306:3306
     volumes:
