@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex" id="app">
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Ticketing System</div>
+      <div class="sidebar-heading">{{appTitle}}</div>
       <div class="list-group list-group-flush" v-show="isAuthenticated">
         <router-link class="list-group-item list-group-item-action bg-light" to="/dashboard">Πίνακας</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/clients">Πελάτες</router-link>
@@ -31,7 +31,8 @@ export default {
   data() {
     return {
         footerText: process.env.VUE_APP_FOOTER_TEXT,
-        isAuthenticated: false
+        isAuthenticated: false,
+        appTitle: process.env.VUE_APP_TITLE || 'Trouble Ticket'
     }
   },
   components: {
