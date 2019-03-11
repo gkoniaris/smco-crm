@@ -12,11 +12,9 @@ class AuthService {
     }
  
     login (email, password) {
-        return fetch.get('/login', {
-            params: {
-                email,
-                password
-            }
+        return fetch.post('/login', {
+            email,
+            password
         }).then(response => {
             this.token = response.data.token
             localStorage.setItem('token', this.token)

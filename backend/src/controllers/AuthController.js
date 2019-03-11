@@ -3,7 +3,7 @@ const AuthService = require('../services/AuthService.js')
 class AuthController {
     async login(req, res, next) {
         try {
-            const token = await AuthService.login(req.query.email, req.query.password)
+            const token = await AuthService.login(req.body.email, req.body.password)
             return res.json({token})
         } catch(err) { next(err) }
     }

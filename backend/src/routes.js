@@ -12,7 +12,7 @@ router.use(cors())
 router.use(bodyParser({extended: true}))
 
 router.use('/', express.static(path.join(process.cwd(), 'frontend/dist')))
-router.get('/api/login', validate('query', require('./validators/get/login.js')), require('./controllers/AuthController').login)
+router.post('/api/login', validate('body', require('./validators/get/login.js')), require('./controllers/AuthController').login)
 
 if (config.disableSignup !== true) {
     router.post('/api/signup', validate('body', require('./validators/post/signup.js')), require('./controllers/AuthController').signup)
