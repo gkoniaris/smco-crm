@@ -1,1 +1,1 @@
-npm install && cd frontend && npm install && cd ../backend && npm install && cd ../frontend && npm run build && cd ../ && docker-compose up -d
+git pull && npm install && cd frontend && npm install && cd ../backend && npm install && cd ../frontend && npm run build && cd ../ && docker-compose up -d
