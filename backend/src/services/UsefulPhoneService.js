@@ -17,9 +17,9 @@ class ClientService {
         }
 
         if (!config.sharedUsers) {
-            query.include[0].where = {
+            query.where[Op.and].push({
                 userId: userId
-            }
+            })
         }
 
         return UsefulPhone.findAndCountAll(query)
