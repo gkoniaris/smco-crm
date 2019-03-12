@@ -80,8 +80,6 @@
           <div class="col-md-12 mt-4">
             <button type="submit" class="btn btn-primary">Ενημέρωση βλάβης</button>
           </div>
-
-          {{device}}
         </div>
       </fieldset>
     </form>
