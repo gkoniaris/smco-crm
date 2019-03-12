@@ -116,7 +116,9 @@ export default {
   name: "StatusChangePartial",
   props: {
     initialStatus: String,
-    entity: Object
+    entity: Object,
+    freezedDate: String,
+    closedDate: String
   },
   methods: {
     setField(field, value) {
