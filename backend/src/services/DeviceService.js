@@ -24,7 +24,9 @@ class DeviceService {
         }
 
         if (!config.sharedUsers) {
-            query.where.userId = userId
+            query.include[0].where = {
+                userId: userId
+            }
         }
 
         return Device.findOne(query)
@@ -85,14 +87,18 @@ class DeviceService {
     }
 
     async update(id, data, userId) {
+        const deviceFound = await this.find(userId, id)
+
+        if (!deviceFound) {
+            const error = new Error("Device not found")
+            error.status = 404
+            throw error
+        }
+
         const query = {
             where: {
                 id
             }
-        }
-
-        if (!config.sharedUsers) {
-            query.where.userId = userId
         }
 
         if (data.status === 'freezed') data.freezedDate = new Date()

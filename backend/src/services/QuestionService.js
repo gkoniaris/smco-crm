@@ -24,7 +24,9 @@ class ClientService {
         }
 
         if (!config.sharedUsers) {
-            query.where.userId = userId
+            query.include[0].where = {
+                userId: userId
+            }
         }
 
         return Question.findOne(query)
@@ -85,14 +87,18 @@ class ClientService {
     }
 
     async update(id, data, userId) {
+        const questionFound = await this.find(userId, id)
+
+        if (!questionFound) {
+            const error = new Error("Question not found")
+            error.status = 404
+            throw error
+        }
+
         const query = {
             where: {
                 id
             }
-        }
-
-        if (!config.sharedUsers) {
-            query.where.userId = userId
         }
 
         if (data.status === 'freezed') data.freezedDate = new Date()
