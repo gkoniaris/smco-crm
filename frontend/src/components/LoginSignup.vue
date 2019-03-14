@@ -60,4 +60,22 @@ export default {
     margin: auto;
     margin-top: -120px;
 }
+@media (max-width: 767px) {
+    .login-form,
+    .signup-form {
+        height: 100%;
+        position: static;
+        margin: 0;
+        width:100% !important;
+        display: table !important;
+        background-color: #2196F3 !important;
+    }
+    .login-form-container > div,
+    .signup-form-container > div
+    {
+        width: 100%;
+        margin: auto;
+        margin-top: 120px;
+    }
+}
 </style>
