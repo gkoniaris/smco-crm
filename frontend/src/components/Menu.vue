@@ -21,9 +21,9 @@
       <li class="nav-item" v-show="!isAuthenticated">
         <router-link class="nav-link" to="/login">Είσοδος</router-link>
       </li>
-      <li class="nav-item" v-show="!isAuthenticated" v-if="!disableSignup">
+      <!-- <li class="nav-item" v-show="!isAuthenticated" v-if="!disableSignup">
         <router-link class="nav-link" to="/signup">Εγγραφή</router-link>
-      </li>
+      </li> -->
       <li class="nav-item" v-if="isAuthenticated">
         <a class="nav-link">Καλως ήρθες {{user.firstName}}</a>
       </li>
