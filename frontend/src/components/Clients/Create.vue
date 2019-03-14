@@ -11,7 +11,8 @@
       <div class="alert alert-danger" v-show="error">{{error}}</div>
       <div class="alert alert-success" v-show="message">{{message}}</div>
       <div class="row">
-        <div class="col-md col-sm-12 card mt-2 ml-3 mr-3">
+        <div class="col-12 col-xl mt-2">
+          <div class="card">
           <div class="card-body">
             <div class="card-title">Πληροφορίες πελάτη</div>
             <div class="card-text">
@@ -101,8 +102,10 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
-        <div class="col-md col-sm-12 card mt-2 ml-2 mr-2">
+        <div class="col-12 col-xl mt-2">
+          <div class="card">
           <div class="card-body">
             <div class="card-title">Πληροφορίες διεύθυνσης
               <div class="float-right">
@@ -203,6 +206,7 @@
               <small class="invalid-feedback">{{ errors.first('bell') }}</small>
             </div>
             </fieldset>
+          </div>
           </div>
         </div>
       </div>
