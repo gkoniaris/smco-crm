@@ -1,14 +1,16 @@
 <template>
   <div class="d-flex" id="app">
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <LeftSidebar/>
+    <!-- <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">{{appTitle}}</div>
       <div class="list-group list-group-flush" v-show="isAuthenticated">
         <router-link class="list-group-item list-group-item-action bg-light" to="/dashboard">Πίνακας</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/clients">Πελάτες</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/devices">Βλάβες</router-link>
+        <router-link class="list-group-item list-group-item-action bg-light" to="/visits">Επισκέψεις</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/questions">Ερωτήσεις</router-link>
       </div>
-    </div>
+    </div> -->
     <div id="page-content-wrapper">
       <Menu :key="$route.fullPath"/>
       <div class="col-md-12">
@@ -20,6 +22,7 @@
 
 <script>
 import Menu from "./components/Menu.vue";
+import LeftSidebar from './components/Partials/LeftSidebar'
 import AuthService from './services/AuthService'
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -36,7 +39,7 @@ export default {
     }
   },
   components: {
-    Menu
+    Menu, LeftSidebar
   },
   watch:{
     $route (to, from){
@@ -101,56 +104,5 @@ select.form-control {
 }
 body {
   overflow-x: hidden;
-}
-
-#sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -15rem;
-  -webkit-transition: margin 0.25s ease-out;
-  -moz-transition: margin 0.25s ease-out;
-  -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out;
-  border:none;
-  border-right: 1px solid #252525 !important;
-}
-
-#sidebar-wrapper .sidebar-heading {
-  padding: 26px 1.25rem;
-  font-size: 1.2rem;
-  border: 0 !important;
-  background: #222222;
-  color: white;
-  width: 15rem;
-}
-#sidebar-wrapper .list-group {
-  width: 15rem;
-}
-
-#sidebar-wrapper .list-group-item {
-  padding: 1.75rem 1.25rem;
-}
-
-#page-content-wrapper {
-  min-width: 100vw;
-  margin-bottom: 25px;
-}
-
-#app.toggled #sidebar-wrapper {
-  margin-left: 0;
-}
-
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #app.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
 }
 </style>

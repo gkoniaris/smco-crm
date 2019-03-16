@@ -1,37 +1,42 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item">
-        <router-link class="nav-link" v-show="isAuthenticated" to="/dashboard">Πίνακας</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" v-show="isAuthenticated" to="/clients">Πελάτες</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" v-show="isAuthenticated" to="/devices">Βλάβες</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" v-show="isAuthenticated" to="/questions">Ερωτήσεις</router-link>
-      </li> -->
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item" v-show="!isAuthenticated">
-        <router-link class="nav-link" to="/login">Είσοδος</router-link>
-      </li>
-      <!-- <li class="nav-item" v-show="!isAuthenticated" v-if="!disableSignup">
-        <router-link class="nav-link" to="/signup">Εγγραφή</router-link>
-      </li> -->
-      <li class="nav-item" v-if="isAuthenticated">
-        <a class="nav-link">Καλως ήρθες {{user.firstName}}</a>
-      </li>
-      <li class="nav-item" v-show="isAuthenticated">
-        <a class="nav-link" v-on:click="logout()">Έξοδος</a>
-      </li>
-    </ul>
-  </div>
+    <a href="#" class="navbar-brand d-lg-none d-block">
+      {{appTitle}}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/dashboard">Πίνακας</router-link>
+        </li>
+        <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/clients">Πελάτες</router-link>
+        </li>
+        <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/devices">Βλάβες</router-link>
+        </li>
+        <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/questions">Ερωτήσεις</router-link>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" v-show="!isAuthenticated">
+          <router-link class="nav-link" to="/login">Είσοδος</router-link>
+        </li>
+        <!-- <li class="nav-item" v-show="!isAuthenticated" v-if="!disableSignup">
+          <router-link class="nav-link" to="/signup">Εγγραφή</router-link>
+        </li> -->
+        <li class="nav-item" v-if="isAuthenticated">
+          <a class="nav-link">Καλως ήρθες {{user.firstName}}</a>
+        </li>
+        <li class="nav-item" v-show="isAuthenticated">
+          <a class="nav-link" v-on:click="logout()">Έξοδος</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 </template>
@@ -46,7 +51,8 @@ export default {
   },
   data: () => {
     return {
-      disableSignup: process.env.VUE_APP_DISABLE_SIGNUP === 'true'
+      disableSignup: process.env.VUE_APP_DISABLE_SIGNUP === 'true',
+      appTitle: process.env.VUE_APP_TITLE || 'Trouble Ticket'
     }
   },
   methods: {
