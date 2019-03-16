@@ -19,6 +19,9 @@
           <router-link class="nav-link" v-show="isAuthenticated" to="/devices">Βλάβες</router-link>
         </li>
         <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/visits">Επισκέψεις</router-link>
+        </li>
+        <li class="nav-item d-lg-none d-block">
           <router-link class="nav-link" v-show="isAuthenticated" to="/questions">Ερωτήσεις</router-link>
         </li>
       </ul>
@@ -26,10 +29,7 @@
         <li class="nav-item" v-show="!isAuthenticated">
           <router-link class="nav-link" to="/login">Είσοδος</router-link>
         </li>
-        <!-- <li class="nav-item" v-show="!isAuthenticated" v-if="!disableSignup">
-          <router-link class="nav-link" to="/signup">Εγγραφή</router-link>
-        </li> -->
-        <li class="nav-item" v-if="isAuthenticated">
+        <li class="nav-item d-lg-block d-none" v-if="isAuthenticated">
           <a class="nav-link">Καλως ήρθες {{user.firstName}}</a>
         </li>
         <li class="nav-item" v-show="isAuthenticated">

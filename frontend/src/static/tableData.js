@@ -101,6 +101,60 @@ const deviceTable = {
     ]
 }
 
+const visitTable = {
+    actions: {
+        view: {
+            to: 'visit'
+        }
+    },
+    fields: [
+        {
+            name: "id",
+            property: "id",
+            title: "TTΕ"
+        },
+        {
+            name: "type",
+            property: "type",
+            title: "Είδος συσκευής"
+        },
+        {
+            name: "model",
+            property: "model",
+            title: "Μοντέλο"
+        },
+        {
+            name: "status",
+            property: "status",
+            title: "Κατάσταση",
+            replace: {
+                open: "Ανοιχτή",
+                freezed: "Σε αναμονή",
+                closed: "Κλειστή"
+            }
+        },
+        {
+            name: "date",
+            property: "appointments[0].date",
+            title: "Ημερομηνία πρώτης επίσκεψης",
+            sort: "date",
+            format: (date) => {
+                return date.slice(0, 10)
+            }
+        },
+        {
+            name: "firstName",
+            property: "client.firstName",
+            title: "Όνομα"
+        },
+        {
+            name: "lastName",
+            property: "client.lastName",
+            title: "Επώνυμο"
+        }
+    ]
+}
+
 const userTable = {
     actions: {
         view: {
@@ -158,5 +212,6 @@ export default {
     userTable,
     questionTable,
     deviceTable,
+    visitTable,
     usefulPhoneTable
 }

@@ -36,6 +36,8 @@ router.get('/api/device/:id', require('./controllers/DeviceController').find)
 router.post('/api/device', validate('body', require('./validators/post/device.js')), require('./controllers/DeviceController').create)
 router.patch('/api/device/:id', validate('body', require('./validators/patch/device.js')), require('./controllers/DeviceController').update)
 
+router.get('/api/visit', require('./controllers/VisitController').get)
+
 router.get('/api/usefulPhone', require('./controllers/UsefulPhoneController').get)
 
 router.get('/api/geolocate', validate('query', require('./validators/get/geolocate.js')), require('./controllers/GeolocateController').address)
