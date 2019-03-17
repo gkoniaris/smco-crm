@@ -55,7 +55,7 @@ export default {
             if (!valid) return
             AuthService.login(email, password)
             .then(() => {
-                    router.push('dashboard')
+                router.push('dashboard')
             }).catch(err => {
                 this.error = err
             })
