@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import router from '../router.js' 
 import AuthService from '../services/AuthService.js'
 
 export default {
@@ -62,7 +61,7 @@ export default {
         .then(valid => {
             if (!valid) return
             AuthService.signup(email, password, firstName, lastName)
-            .then(message => {
+            .then(() => {
                 this.message = "You have successfully signed up"
             }).catch(err => {
                 this.error = err
