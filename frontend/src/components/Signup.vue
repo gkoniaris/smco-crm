@@ -7,6 +7,9 @@
                 <div class="alert alert-danger" v-show="error">
                     {{error}}
                 </div>
+                <div class="alert alert-success" v-show="message">
+                    {{message}}
+                </div>
                 <div class="form-group">
                     <label for="firstName">Όνομα</label>
                     <input v-validate="{ required: true }" :class="{ 'is-invalid': errors.has('firstName') }" v-model="signupInfo.firstName" firstName="firstName" name="firstName" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name">
@@ -43,6 +46,7 @@ export default {
       return {
           submitted: false,
           error: false,
+          message: false,
           signupInfo: {
               email: '',
               password: '',
@@ -58,8 +62,8 @@ export default {
         .then(valid => {
             if (!valid) return
             AuthService.signup(email, password, firstName, lastName)
-            .then(() => {
-                router.push('login')
+            .then(message => {
+                this.message = "You have successfully signed up"
             }).catch(err => {
                 this.error = err
             })
