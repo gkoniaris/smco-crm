@@ -15,5 +15,3 @@ process.on('uncaughtException', (err) => {
     console.log(err)
     rollbar.error(err)
 });
-
-require('./services/StatsService')
