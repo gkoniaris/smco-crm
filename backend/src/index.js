@@ -1,4 +1,5 @@
 require('dotenv').config()
+global.Promise=require("bluebird")
 const express = require("express")
 const app = express()
 const config = require('./config.js')

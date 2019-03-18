@@ -16,6 +16,7 @@ import DevicesIndex from './components/Devices/Index'
 import DevicesCreate from './components/Devices/Create'
 import DeviceView from './components/Devices/View'
 import VisitsIndex from './components/Visits/Index'
+import VisitsCreate from './components/Visits/Create'
 
 Vue.use(Router)
 
@@ -136,6 +137,14 @@ const router =  new Router({
       path: '/visits',
       name: 'Visits',
       component: VisitsIndex,
+      meta: { 
+        access: 'authenticated'
+      }
+    },
+    {
+      path: '/visits/create',
+      name: 'createVisits',
+      component: VisitsCreate,
       meta: { 
         access: 'authenticated'
       }
