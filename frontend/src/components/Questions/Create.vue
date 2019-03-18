@@ -26,21 +26,6 @@
                   :class="{ 'is-invalid': errors.has('question') }"
                 />
                 <small class="invalid-feedback">{{ errors.first('question') }}</small>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('question', 'Θα ήθελα να παραγγείλω το ανταλλακτικό .... για τη συσκευή .... αφού ενημερωθώ πρώτα για το κόστος του')">Θα ήθελα να παραγγείλω το ανταλλακτικό .... για τη συσκευή .... αφού ενημερωθώ πρώτα για το κόστος του</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('question', 'Θα ήθελα να με ενημερώσετε για τη διαθεσιμότητα του παρακάτω προϊόντος ....')">Θα ήθελα να με ενημερώσετε για τη διαθεσιμότητα του παρακάτω προϊόντος ....</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('question', 'Θα ήθελα να ρωτήσω πόσο θα κοστίσει η επισκευή της συσκευής .... στην οποία παρατήρησα τα παρακάτω προβλήματα ....')">Θα ήθελα να ρωτήσω πόσο θα κοστίσει η επισκευή της συσκευής .... στην οποία παρατήρησα τα παρακάτω προβλήματα ....</div>
-                  </div>
-                </div>
               </div>
               <div class="form-group">
                 <label for="question">Σχόλια επικοινωνίας</label>
@@ -49,16 +34,6 @@
                   placeholder="Καλέστε μεταξύ 15:30 και 19:30 λόγω δουλειάς"
                   v-model="questionData.contactComments"
                 />
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('contactComments', 'Θα ήθελα να επικοινωνήσετε μαζί μου μεταξύ των ωρών .... και ....')">Θα ήθελα να επικοινωνήσετε μαζί μου μεταξύ των ωρών .... και ....</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('contactComments', 'Θα ήθελα να επικοινωνήσετε μαζί μου μόνο τις συγκεκριμένες ημέρες ....')">Θα ήθελα να επικοινωνήσετε μαζί μου μόνο τις συγκεκριμένες ημέρες ....</div>
-                  </div>
-                </div>
               </div>
               <div class="form-group">
                 <label for="createdDate">Ημερομηνία</label>
@@ -175,10 +150,6 @@ export default {
     };
   },
   methods: {
-    append(field, text) {
-      this.questionData[field] !== '' ? this.questionData[field] += '\n' : null
-      this.questionData[field] += text
-    },
     getLabel(item) {
       if (item) {
         this.clientData = item

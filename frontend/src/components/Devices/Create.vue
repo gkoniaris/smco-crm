@@ -82,16 +82,6 @@
                   placeholder="Καλέστε μεταξύ 15:30 και 19:30 λόγω δουλειάς"
                   v-model="deviceData.contactComments"
                 />
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('contactComments', 'Θα ήθελα να επικοινωνήσετε μαζί μου μεταξύ των ωρών .... και ....')">Θα ήθελα να επικοινωνήσετε μαζί μου μεταξύ των ωρών .... και ....</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="btn btn-sm btn-primary mt-2" v-on:click="append('contactComments', 'Θα ήθελα να επικοινωνήσετε μαζί μου μόνο τις συγκεκριμένες ημέρες ....')">Θα ήθελα να επικοινωνήσετε μαζί μου μόνο τις συγκεκριμένες ημέρες ....</div>
-                  </div>
-                </div>
               </div>
               <div class="form-group">
                 <label for="device">Γενικά σχόλια</label>
@@ -214,10 +204,6 @@ export default {
     };
   },
   methods: {
-    append(field, text) {
-      this.deviceData[field] !== '' ? this.deviceData[field] += '\n' : null
-      this.deviceData[field] += text
-    },
     getLabel(item) {
       if (item) {
         this.clientData = item
