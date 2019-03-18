@@ -5,7 +5,7 @@
         <hr>
           <div class="row">
             <div class="col-md-8">
-              <router-link to="/questions/create" class="btn btn-primary">Νέα επίσκεψη</router-link>
+              <router-link to="/visits/create" class="btn btn-primary">Νέα επίσκεψη</router-link>
             </div>
           </div>
         </div>

@@ -7,6 +7,15 @@ class VisitController {
             return res.json({data: visits, count, pages})
         } catch(err) { next(err) }
     }
+
+    async create(req, res, next) {
+        try {
+            const visit = await VisitService.create(req.body, req.user.id)
+            return res.json({
+                message: `Η επίσκεψη ${visit.id} δημιουργήθηκε επιτυχώς`
+            })
+        } catch(err) { next(err) }
+    }
 } 
 
 module.exports = new VisitController()

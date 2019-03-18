@@ -1,4 +1,5 @@
 require('dotenv').config()
+global.Promise=require("bluebird")
 const express = require("express")
 const app = express()
 const config = require('./config.js')
@@ -15,5 +16,3 @@ process.on('uncaughtException', (err) => {
     console.log(err)
     rollbar.error(err)
 });
-
-require('./services/StatsService')

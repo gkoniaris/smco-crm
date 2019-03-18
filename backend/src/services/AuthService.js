@@ -5,7 +5,7 @@ const User = require('../models/user.js')
 const config = require('../config.js')
 
 class AuthService {
-    async login (email, password) {
+    async login (email, password, rememberMe = false) {
         const error = new Error("Invalid credentials")
         error.status = 401
         const user = await User.findOne({ where: { email } })
@@ -15,7 +15,7 @@ class AuthService {
                     if (err || !result) reject(error)
                     const token = jwt.sign({
                         id: user.id,
-                        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), //sign for 24 hours
+                        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * (rememberMe ? 30 : 1)), //sign for 24 hours or 30 days if rememberMe is true
                         firstName: user.firstName, 
                         lastName: user.lastName
                     }, config.jwtSecret)
