@@ -4,7 +4,6 @@ const express = require("express")
 const app = express()
 const config = require('./config.js')
 const router = require('./routes')
-const rollbar = require('./libs/rollbar')
 
 app.use(router)
 
@@ -14,5 +13,4 @@ app.listen(config.port, (err) => {
 
 process.on('uncaughtException', (err) => {
     console.log(err)
-    rollbar.error(err)
 });
