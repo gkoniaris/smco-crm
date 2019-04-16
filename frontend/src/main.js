@@ -4,14 +4,18 @@ import Paginate from 'vuejs-paginate'
 import App from './App.vue'
 import router from './router'
 import validators from './validators'
+import FullCalendar from "vue-full-calendar";
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
+import "fullcalendar/dist/fullcalendar.min.css";
 import fetch from './fetch'
+
 
 validators.register()
 
 Vue.config.productionTip = false
 
+Vue.use(FullCalendar)
 Vue.use(Autocomplete)
 Vue.use(Loading)
 Vue.component('paginate', Paginate)

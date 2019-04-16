@@ -1,7 +1,7 @@
 <template>
 <div class="row mt-4">
   <div class="col-md-12">
-    <h3>Δημιουργία βλάβης</h3>
+    <h3>Δημιουργία συσκευής</h3>
     <hr>
     <form
       @submit.prevent="create(deviceData)"
@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md col-sm-12 card mt-2 ml-3 mr-3">
           <div class="card-body">
-            <div class="card-title">Πληροφορίες βλάβης</div>
+            <div class="card-title">Πληροφορίες συσκευής</div>
             <div class="card-text">
               <div class="form-group">
                 <label for="device">Τύπος συσκευής</label>

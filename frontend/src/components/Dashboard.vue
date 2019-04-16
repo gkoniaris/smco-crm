@@ -102,7 +102,9 @@
             :actions="usefulPhones.tableData.actions"
           />
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <Calendar :service="visits.service" view="month" height="600"/>
+        </div>
       </div>
     </div>
     <div class="col-md-12 mt-4">
@@ -120,7 +122,7 @@
       />
     </div>
     <div class="col-md-12 mt-4">
-      <h3>Βλάβες</h3>
+      <h3>Συσκευές</h3>
       <hr>
       <Table
         entity="device"
@@ -133,19 +135,36 @@
         :filters="devices.filters"
       />
     </div>
+    <div class="col-md-12 mt-4">
+      <h3>Επισκέψεις</h3>
+      <hr>
+      <Table
+        entity="device"
+        :order="visits.order"
+        :sort="visits.sort"
+        :pagination="visits.tableData.pagination"
+        :service="visits.service"
+        :table-fields="visits.tableData.fields"
+        :actions="visits.tableData.actions"
+        :filters="visits.filters"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import Table from "./Table";
-import QuestionService from "../services/QuestionService";
-import DeviceService from "../services/DeviceService";
-import UsefulPhonesService from "../services/UsefulPhonesService";
-import tableData from "../static/tableData";
-import fetch from "../fetch";
+import Table from "./Table"
+import Calendar from './Calendar'
+import QuestionService from "../services/QuestionService"
+import DeviceService from "../services/DeviceService"
+import VisitService from "../services/VisitService"
+import UsefulPhonesService from "../services/UsefulPhonesService"
+import tableData from "../static/tableData"
+import fetch from "../fetch"
+
 export default {
   name: "Dashboard",
-  components: { Table: Table },
+  components: { Table: Table, Calendar },
   data: () => {
     return {
       stats: {},
@@ -159,6 +178,13 @@ export default {
       devices: {
         service: DeviceService,
         tableData: tableData.deviceTable,
+        filters: { status: ["open", "freezed"] },
+        sort: ["status", "date"],
+        order: ["asc", "desc"]
+      },
+      visits: {
+        service: VisitService,
+        tableData: tableData.visitTable,
         filters: { status: ["open", "freezed"] },
         sort: ["status", "date"],
         order: ["asc", "desc"]

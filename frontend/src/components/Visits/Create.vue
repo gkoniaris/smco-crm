@@ -69,21 +69,28 @@
                   <label for="visit">Ραντεβού
                     <div class="btn btn-primary btn-sm ml-2" v-on:click="addNewAppointment">+</div>
                   </label>
-                    <div
-                        class="card card-body bg-light mb-2"
-                        v-bind:key="appointmentIdx"
-                        v-for="(appointment, appointmentIdx) in visitData.appointments"
-                    >
-                        <label>Ημερομηνία</label>
-                        <input type="date" v-model="appointment.date" class="form-control">
-                        <label>Ενέργειες</label>
-                        <textarea v-model="appointment.actions" class="form-control"/>
-                        <div class="row" v-if="visitData.appointments.length > 1">
-                            <div class="col-md-3 mt-2">
-                                <div class="btn btn-danger btn-sm" v-on:click="removeAppointment(appointmentIdx)">Αφαίρεση</div>
-                            </div>
-                        </div>
+                  <div
+                    class="border-left rounded pl-2 mb-2 appointment"
+                    v-bind:key="appointmentIdx"
+                    v-for="(appointment, appointmentIdx) in visitData.appointments"
+                  >
+                    <label>Ημερομηνία</label>
+                    <input type="datetime-local" step="1800" v-model="appointment.date" class="form-control">
+                    <label>Διάρκεια (λεπτά)</label>
+                    <input type="number" step="30" min="30" v-model="appointment.duration" class="form-control">
+                    <label>Ενέργειες</label>
+                    <textarea v-model="appointment.actions" 
+                      class="form-control"
+                      placeholder="Αρχικός έλεγχος"/>
+                    <div class="row" v-if="visitData.appointments.length > 1">
+                      <div class="col-md-3 mt-2">
+                        <div
+                          class="btn btn-danger btn-sm"
+                          v-on:click="removeAppointment(appointmentIdx)"
+                        >Αφαίρεση</div>
+                      </div>
                     </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="visit">Σχόλια επικοινωνίας</label>
@@ -147,41 +154,33 @@
                     <div class="row" v-if="clientData.addresses.length">
                       <div class="col-md-12">
                         <label for="address">Διευθύνσεις</label>
-                        <div class="form-group form-row align-items-center">
-                          <div
-                            class="col-3 input-group"
-                            v-bind:key="address.id"
-                            v-for="address in clientData.addresses"
+                        <div
+                          v-bind:key="address.id"
+                          v-for="address in clientData.addresses"
+                          class="form-group form-row align-items-center"
+                          v-bind:class="{'has-success': visitData.addressId === address.id}"
+                        >
+                          <input
+                            type="text"
+                            readonly
+                            v-bind:value="address.address + ',' + address.region + ',' + address.postalCode + (visitData.addressId === address.id ? ' (Επιλεγμένη διεύθυνση)': '')"
+                            class="form-control form-control-inline"
                           >
-                            <input
-                              type="text"
-                              readonly
-                              v-bind:value="address.address + ',' + address.region + ',' + address.postalCode"
-                              class="form-control form-control-inline"
-                            >
-                            <div class="inpur-group-append">
-                              <button class="btn btn-success" type="button">✓</button>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="row" v-if="clientData.phones.length">
                       <div class="col-md-12">
                         <label for="phone">Τηλέφωνα</label>
-                        <div class="form-group form-row align-items-center">
-                          <div
-                            class="col-auto"
-                            v-bind:key="phone.id"
-                            v-for="phone in clientData.phones"
-                          >
+                        <div class="form-group form-row align-items-center"
+                          v-bind:key="phone.id"
+                          v-for="phone in clientData.phones">
                             <input
                               readonly
                               type="text"
                               class="form-control mt-1"
                               v-bind:value="phone.phone + ' (' + phone.type + ')'"
                             >
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -206,6 +205,7 @@ import ClientsAutocomplete from "../Autocompletes/ClientsAutocomplete.vue";
 import VisitService from "../../services/VisitService";
 import fetch from "../../fetch.js";
 import _ from "lodash";
+import moment from 'moment'
 
 const emptyVisitData = {
   visit: "",
@@ -215,7 +215,8 @@ const emptyVisitData = {
   appointments: [
     {
       actions: "",
-      date: new Date().toISOString().slice(0, 10)
+      duration: 60,
+      date: moment().add(4, 'h').minutes(0).toDate().toISOString().slice(0, 16)
     }
   ]
 };
@@ -237,17 +238,18 @@ export default {
     addNewAppointment() {
       this.visitData.appointments.push({
         actions: "",
-        date: new Date().toISOString().slice(0, 10)
+        duration: 60,
+        date: new Date().toISOString().slice(0, 16)
       });
     },
     removeAppointment(idx) {
-        this.visitData.appointments.splice(idx, 1)
+      this.visitData.appointments.splice(idx, 1);
     },
     getLabel(item) {
       if (item) {
         this.clientData = item;
         this.visitData.clientId = item.id;
-        this.visitData.addressId = item.addresses[0].id
+        this.visitData.addressId = item.addresses[0].id;
         return (
           item.firstName +
           " " +
@@ -272,7 +274,7 @@ export default {
             this.clientAutocompleteItems = [];
             this.clientAutocompleteItem = null;
             this.clientData = {};
-            this.visitData = JSON.parse(JSON.stringify(emptyVisitData))
+            this.visitData = JSON.parse(JSON.stringify(emptyVisitData));
             this.$validator.reset();
             window.scrollTo(0, 0);
           });
@@ -285,3 +287,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.appointment {
+  background: #f5f5f5;
+  padding: 10px 0;
+}
+</style>

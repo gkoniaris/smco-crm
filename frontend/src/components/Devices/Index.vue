@@ -1,11 +1,11 @@
 <template>
     <div class="row mt-4">
       <div class="col-md-12">
-          <h3>Βλάβες</h3>
+          <h3>Συσκευές</h3>
           <hr>
           <div class="row">
             <div class="col-md-8">
-              <router-link to="/devices/create" class="btn btn-primary">Νέα βλάβη</router-link>
+              <router-link to="/devices/create" class="btn btn-primary">Νέα συσκευή</router-link>
             </div>
           </div>
         </div>

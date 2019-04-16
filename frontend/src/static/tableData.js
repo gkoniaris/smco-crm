@@ -136,7 +136,7 @@ const visitTable = {
         {
             name: "date",
             property: "appointments[0].date",
-            title: "Ημερομηνία πρώτης επίσκεψης",
+            title: "Ημερομηνία",
             sort: "date",
             format: (date) => {
                 return date.slice(0, 10)

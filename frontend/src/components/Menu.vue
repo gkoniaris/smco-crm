@@ -16,7 +16,7 @@
           <router-link class="nav-link" v-show="isAuthenticated" to="/clients">Πελάτες</router-link>
         </li>
         <li class="nav-item d-lg-none d-block">
-          <router-link class="nav-link" v-show="isAuthenticated" to="/devices">Βλάβες</router-link>
+          <router-link class="nav-link" v-show="isAuthenticated" to="/devices">Συσκευές</router-link>
         </li>
         <li class="nav-item d-lg-none d-block">
           <router-link class="nav-link" v-show="isAuthenticated" to="/visits">Επισκέψεις</router-link>

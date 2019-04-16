@@ -19,6 +19,10 @@ const VisitAppointment = sequelize.define('visit_appointment', {
       type: Sequelize.DATE,
       allowNull: false
     },
+    duration: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
     createdAt: {
         type: Sequelize.DATE,
         field: 'created_at'

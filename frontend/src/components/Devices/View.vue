@@ -1,7 +1,7 @@
 <template>
 <div class="row mt-4">
   <div class="col-md-12">
-    <h3>Επεξεργασία βλάβης ΤΤΣ {{device.id}}</h3>
+    <h3>Επεξεργασία συσκευής ΤΤΣ {{device.id}}</h3>
     <hr>
     <form
       @submit.prevent="update(device)"
@@ -15,7 +15,7 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-6 mt-4">
-                <h5 class="mb-4">Πληροφορίες Βλάβης</h5>
+                <h5 class="mb-4">Πληροφορίες Συσκευής</h5>
                 <div class="row">
                 <div class="col-md-12">
                   <label class="font-weight-bold">Τύπος συσκευής:</label>

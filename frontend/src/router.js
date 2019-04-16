@@ -17,7 +17,7 @@ import DevicesCreate from './components/Devices/Create'
 import DeviceView from './components/Devices/View'
 import VisitsIndex from './components/Visits/Index'
 import VisitsCreate from './components/Visits/Create'
-
+import VisitView from './components/Visits/View'
 Vue.use(Router)
 
 const router =  new Router({
@@ -148,7 +148,15 @@ const router =  new Router({
       meta: { 
         access: 'authenticated'
       }
-    }
+    },
+    {
+      path: '/visit/:id',
+      name: 'visit',
+      component: VisitView,
+      meta: { 
+        access: 'authenticated'
+      }
+  },
   ]
 })
 

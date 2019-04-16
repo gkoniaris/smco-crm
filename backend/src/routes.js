@@ -37,7 +37,9 @@ router.post('/api/device', validate('body', require('./validators/post/device.js
 router.patch('/api/device/:id', validate('body', require('./validators/patch/device.js')), require('./controllers/DeviceController').update)
 
 router.get('/api/visit', require('./controllers/VisitController').get)
-router.post('/api/visit', require('./controllers/VisitController').create)
+router.get('/api/visit/:id', require('./controllers/VisitController').find)
+router.post('/api/visit', validate('body', require('./validators/post/visit.js')), require('./controllers/VisitController').create)
+router.patch('/api/visit/:id', validate('body', require('./validators/patch/visit.js')), require('./controllers/VisitController').update)
 
 router.get('/api/usefulPhone', require('./controllers/UsefulPhoneController').get)
 

@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('.')
 const Client = require('./client.js')
+const Address = require('./address.js')
 const VisitAppointment = require ('./Associations/visitAppointment')
 
 const Visit = sequelize.define('visits', {
@@ -13,6 +14,11 @@ const Visit = sequelize.define('visits', {
         type: Sequelize.INTEGER,
         allowNull: false,
         field: 'client_id'
+    },
+    addressId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'address_id'
     },
     failureDescription: {
       type: Sequelize.TEXT,
@@ -96,5 +102,6 @@ Visit.prototype.toJSON =  function () {
 
 Visit.belongsTo(Client)
 Visit.hasMany(VisitAppointment, {as: 'appointments'})
+Visit.belongsTo(Address, {as: 'address'})
 
 module.exports = Visit
