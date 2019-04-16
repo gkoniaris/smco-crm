@@ -1,7 +1,7 @@
 <template>
 <div class="row mt-4">
   <div class="col-md-12">
-    <h3>Επεξεργασία συσκευής ΤΤΣ {{visit.id}}</h3>
+    <h3>Επεξεργασία επίσκεψης ΤΤΕ {{visit.id}}</h3>
     <hr>
     <form
       @submit.prevent="update(visit)"
@@ -15,7 +15,7 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-6 mt-4">
-                <h5 class="mb-4">Πληροφορίες Συσκευής</h5>
+                <h5 class="mb-4">Πληροφορίες επίσκεψης</h5>
                 <div class="row">
                 <div class="col-md-12">
                   <label class="font-weight-bold">Τύπος συσκευής:</label>
@@ -101,7 +101,7 @@
         </div>
         <div class="row" v-if="initialVisitStatus !== 'closed'">
           <div class="col-md-12 mt-4">
-            <button type="submit" class="btn btn-primary">Ενημέρωση βλάβης</button>
+            <button type="submit" class="btn btn-primary">Ενημέρωση επίσκεψης</button>
           </div>
         </div>
       </fieldset>

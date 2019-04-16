@@ -189,7 +189,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <button type="submit" class="btn btn-primary">Αποθήκευση βλάβης</button>
+                  <button type="submit" class="btn btn-primary">Αποθήκευση επίσκεψης</button>
                 </div>
               </div>
             </div>
