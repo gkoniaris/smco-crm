@@ -26,8 +26,8 @@ const questionTable = {
             }
         },
         {
-            name: "askedDate",
-            property: "askedDate",
+            name: "date",
+            property: "date",
             title: "Ημερομηνία",
             sort: "askedDate",
             format: (date) => {
@@ -159,6 +159,9 @@ const userTable = {
     actions: {
         view: {
             to: 'clientProfile'
+        },
+        edit: {
+            to: 'editClient'
         }
     },
     fields: [{

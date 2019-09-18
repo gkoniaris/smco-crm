@@ -172,7 +172,7 @@ export default {
         service: QuestionService,
         tableData: tableData.questionTable,
         filters: { status: ["open", "freezed"] },
-        sort: ["status", "askedDate"],
+        sort: ["status", "date"],
         order: ["asc", "desc"]
       },
       devices: {
@@ -196,7 +196,7 @@ export default {
     };
   },
   mounted() {
-    fetch.get("/stats").then(results => {
+    fetch.get("/stats?type=pending").then(results => {
       this.stats = results.data.stats
     })
   }

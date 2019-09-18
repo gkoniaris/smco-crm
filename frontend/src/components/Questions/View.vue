@@ -81,11 +81,11 @@ export default {
           { profit: null, shopHappy: null, clientHappy: null, completed: null },
           question
         );
-        this.freezedDate = this.question.freezedDate
-          ? this.question.freezedDate.slice(0, 10)
+        this.freezedDate = this.question.freezed_date
+          ? this.question.freezed_date.slice(0, 10)
           : null;
-        this.closedDate = this.question.closedDate
-          ? this.question.closedDate.slice(0, 10)
+        this.closedDate = this.question.closed_date
+          ? this.question.closed_date.slice(0, 10)
           : null;
         this.client = question.client;
       });

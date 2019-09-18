@@ -101,8 +101,8 @@ class ClientService {
             }
         }
 
-        if (data.status === 'freezed') data.freezedDate = new Date()
-        if (data.status === 'closed') data.closedDate = new Date()
+        if (data.status === 'freezed') data.freezed_date = new Date()
+        if (data.status === 'closed') data.closed_date = new Date()
         
         return sequelize.transaction(async (transaction) => {
             const question = await Question.findOne(query, {transaction})

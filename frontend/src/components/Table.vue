@@ -59,6 +59,11 @@
                       class="btn btn-primary btn-sm mr-2"
                       :to="{ name: actions.view.to, params: { id: item.id }}"
                     >Προβολή</router-link>
+                    <router-link
+                      v-if="actions.edit"
+                      class="btn btn-primary btn-sm mr-2"
+                      :to="{ name: actions.edit.to, params: { id: item.id }}"
+                    >Επεξεργασία</router-link>
                   </td>
                 </tr>
               </tbody>

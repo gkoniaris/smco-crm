@@ -28,6 +28,15 @@ class ClientController {
             })
         } catch(err) { next(err) }
     }
+
+    async update(req, res, next) {
+        try {
+            await ClientService.update(req.params.id, req.body, req.user.id)
+            return res.json({
+                message: `Ο πελάτης ${req.body.firstName} ${req.body.lastName} ανανεώθηκε επιτυχώς`
+            })
+        } catch(err) { next(err) }
+    }
 } 
 
 module.exports = new ClientController()

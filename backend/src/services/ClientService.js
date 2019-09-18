@@ -101,6 +101,66 @@ class ClientService {
             if (data.work) await Phone.create({phone: data.work, type: 'work', clientId: client.id}, {transaction})
         })
     }
+
+    async update (id, data, userId) {
+        const clientFound = await this.find(userId, id)
+
+        if (!clientFound) {
+            const error = new Error("Client not found")
+            error.status = 404
+            throw error
+        }
+
+        const query = {
+            where: {
+                id
+            }
+        }
+
+        return sequelize.transaction(async (transaction) => {
+            const client = await Client.findOne(query, {transaction})
+
+            if (!client) {
+                const error = new Error("Client not found")
+                error.status = 404
+                throw error
+            }
+
+            await client.update(data, {transaction})
+            
+            if (data.phone) {
+                const phone = await Phone.findOne({where: { client_id: client.id, type: 'home'} }, {transaction})
+                if (phone) {
+                    await phone.update({phone: data.phone}, {transaction})
+                }
+                if (!phone) await Phone.create({phone: data.phone, type: 'home', clientId: client.id}, {transaction})               
+            }
+
+            if (data.mobile) {
+                const phone = await Phone.findOne({where: { client_id: client.id, type: 'mobile'} }, {transaction})
+                if (phone) {
+                    await phone.update({phone: data.mobile}, {transaction})
+                }
+                if (!phone) await Phone.create({phone: data.mobile, type: 'mobile', clientId: client.id}, {transaction})               
+            }
+
+            if (data.work) {
+                const phone = await Phone.findOne({where: { client_id: client.id, type: 'work'} }, {transaction})
+                if (phone) {
+                    await phone.update({phone: data.work}, {transaction})
+                }
+                if (!phone) await Phone.create({phone: data.work, type: 'work', clientId: client.id}, {transaction})               
+            }
+
+            return client
+        })
+        .then(client => {
+            return client
+        })
+        .catch(error => {
+            throw error
+        })
+    }
 }
 
 module.exports = new ClientService()

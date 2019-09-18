@@ -7,6 +7,7 @@
         <router-link class="list-group-item list-group-item-action bg-light" to="/devices">Συσκευές</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/visits">Επισκέψεις</router-link>
         <router-link class="list-group-item list-group-item-action bg-light" to="/questions">Ερωτήσεις</router-link>
+        <router-link class="list-group-item list-group-item-action bg-light" to="/stats">Στατιστικά</router-link>
       </div>
     </div>
 </template>

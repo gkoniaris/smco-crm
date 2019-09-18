@@ -48,7 +48,7 @@ export default {
                 this.events = entities.map(visit => {
                     return visit.appointments.map(appointment => {
                         return {
-                            title: visit.client.firstName + ' ' + visit.client.lastName + (this.view !== 'month' ? ' (' + visit.address.address + ') \n' + visit.type + ' ' + visit.model + ', ' + visit.failureDescription + (visit.comments ? ('\nΣχόλια: ' + visit.comments) : '') : ''),
+                            title: visit.client.lastName + ' ' + visit.client.firstName + (this.view !== 'month' ? ' (' + visit.address.address + ') \n' + visit.type + ' ' + visit.model + ', ' + visit.failureDescription + (visit.comments ? ('\nΣχόλια: ' + visit.comments) : '') : ''),
                             start: moment.utc(appointment.date),
                             end: moment.utc(appointment.date).add(appointment.duration, 'm')
                         }

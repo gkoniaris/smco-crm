@@ -90,7 +90,7 @@
               <div class="form-group">
                 <label for="workPhone">Δουλειά</label>
                 <input
-                  v-model="clientData.workPhone"
+                  v-model="clientData.work"
                   type="text"
                   name="workPhone"
                   class="form-control"
@@ -251,7 +251,7 @@ export default {
         },
         phone: "",
         mobile: "",
-        workPhone: ""
+        work: ""
       }
     };
   },
@@ -300,7 +300,7 @@ export default {
               },
               phone: "",
               mobile: "",
-              workPhone: ""
+              work: ""
             };
             this.$validator.reset()
             window.scrollTo(0,0)

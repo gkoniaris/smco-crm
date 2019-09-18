@@ -10,7 +10,7 @@
           </div>
         </div>
       <div class="col-md-12">
-        <Table entity="question" :service="service" :table-fields="tableData.fields" :actions="tableData.actions" sort="askedDate" order="desc"/>
+        <Table entity="question" :service="service" :table-fields="tableData.fields" :actions="tableData.actions" sort="date" order="desc"/>
       </div>
     </div>
 </template>

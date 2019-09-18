@@ -25,6 +25,7 @@ router.get('/api/ping', (req, res) => res.json({status: 'ok'}))
 router.get('/api/client', validate('query', require('./validators/get/client.js')), require('./controllers/ClientController').get)
 router.get('/api/client/:id', validate('params', require('./validators/get/clientId.js')), require('./controllers/ClientController').find)
 router.post('/api/client', validate('body', require('./validators/post/client.js')), require('./controllers/ClientController').create)
+router.patch('/api/client/:id', validate('body', require('./validators/post/client.js')), require('./controllers/ClientController').update)
 
 router.get('/api/question', require('./controllers/QuestionController').get)
 router.get('/api/question/:id', require('./controllers/QuestionController').find)

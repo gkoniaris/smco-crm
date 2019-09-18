@@ -24,6 +24,9 @@
         <li class="nav-item d-lg-none d-block">
           <router-link class="nav-link" v-show="isAuthenticated" to="/questions">Ερωτήσεις</router-link>
         </li>
+        <li class="nav-item d-lg-none d-block">
+          <router-link class="nav-link" v-show="isAuthenticated" to="/stats">Στατιστικά</router-link>
+        </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item" v-show="!isAuthenticated">

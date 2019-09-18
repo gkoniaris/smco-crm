@@ -30,16 +30,18 @@ const Question = sequelize.define('questions', {
     answer: {
         type: Sequelize.TEXT
     },
-    askedDate: {
+    date: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
         allowNull: false
     },
     freezedDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        field: 'freezed_date'
     },
     closedDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        field: 'closed_date'
     },
     clientHappy: {
         type: Sequelize.BOOLEAN

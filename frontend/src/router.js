@@ -7,6 +7,7 @@ import ClientsIndex from './components/Clients/Index'
 import ClientsCreate from './components/Clients/Create'
 import ClientsView from './components/Clients/View'
 import ClientsViewProfile from './components/Clients/Profile'
+import ClientsEditProfile from './components/Clients/Edit'
 import ClientsViewDevices from './components/Clients/Devices'
 import ClientsViewQuestions from './components/Clients/Questions'
 import QuestionsIndex from './components/Questions/Index'
@@ -18,6 +19,7 @@ import DeviceView from './components/Devices/View'
 import VisitsIndex from './components/Visits/Index'
 import VisitsCreate from './components/Visits/Create'
 import VisitView from './components/Visits/View'
+import StatsIndex from './components/Stats/Index'
 Vue.use(Router)
 
 const router =  new Router({
@@ -76,6 +78,11 @@ const router =  new Router({
           component: ClientsViewQuestions
         }
       ]
+    },
+    {
+      path: '/client/:id/edit',
+      name: 'editClient',
+      component: ClientsEditProfile
     },
     {
       path: '/clients/create',
@@ -156,7 +163,15 @@ const router =  new Router({
       meta: { 
         access: 'authenticated'
       }
-  },
+    },
+    {
+      path: '/stats',
+      name: 'Stats',
+      component: StatsIndex,
+      meta: { 
+        access: 'authenticated'
+      }
+    }
   ]
 })
 
