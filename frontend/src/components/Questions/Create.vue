@@ -37,7 +37,7 @@
               </div>
               <div class="form-group">
                 <label for="createdDate">Ημερομηνία</label>
-                <input type="date" class="form-control" v-model="questionData.date"/>
+                <input type="date" class="form-control" v-model="questionData.askedDate"/>
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ const emptyQuestionData = {
   question: '',
   contactComments: '',
   clientId: null,
-  date: new Date().toISOString().slice(0, 10)
+  askedDate: new Date().toISOString().slice(0, 10)
 }
 
 export default {
