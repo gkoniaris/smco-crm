@@ -6,7 +6,7 @@ class StatService {
         return await sequelize.query(`SELECT client_happy, SUM(count) as count FROM (
             SELECT client_happy, COUNT(*) as count FROM devices
             JOIN clients ON devices.client_id = clients.id 
-            WHERE closed_date IS NOT NULL AND clients.user_id = ${userId}
+            WHERE closed_date IS NOT NULL
             AND client_happy IS NOT NULL
             GROUP BY devices.client_happy
         
@@ -14,7 +14,7 @@ class StatService {
         
             SELECT client_happy, COUNT(*) as count FROM visits
             JOIN clients ON visits.client_id = clients.id 
-            WHERE closed_date IS NOT NULL AND clients.user_id = ${userId}
+            WHERE closed_date IS NOT NULL
             AND client_happy IS NOT NULL
             GROUP BY visits.client_happy
         ) AS finalQuery
@@ -36,7 +36,7 @@ class StatService {
         return Promise.map(['devices', 'questions'], async (table) => {
             const results = await sequelize.query(`SELECT 
             CONVERT(sum(count), UNSIGNED INTEGER) as count,
-            CONVERT(sum(count) / (SELECT COUNT(*) FROM ${table} JOIN clients ON ${table}.client_id = clients.id  WHERE closed_date IS NOT NULL AND clients.user_id = ${userId}) * 100, UNSIGNED INTEGER) as percentage,
+            CONVERT(sum(count) / (SELECT COUNT(*) FROM ${table} JOIN clients ON ${table}.client_id = clients.id  WHERE closed_date IS NOT NULL) * 100, UNSIGNED INTEGER) as percentage,
             case 
                 when days_diff between 0 and 1 then 0
                 when days_diff between 2 and 4 then 1
@@ -56,7 +56,7 @@ class StatService {
                 COUNT(*) as count,
                 (DATEDIFF(closed_date, date)) AS days_diff FROM ${table}
                 JOIN clients ON ${table}.client_id = clients.id 
-                WHERE closed_date IS NOT NULL AND clients.user_id = ${userId}
+                WHERE closed_date IS NOT NULL
                 GROUP by days_diff
             ) as finalQuery
             GROUP BY numeric_range;`, { type: sequelize.QueryTypes.SELECT })
@@ -73,24 +73,24 @@ class StatService {
             (
             SELECT COUNT(*) as openDevicesCount FROM devices
             JOIN clients ON devices.client_id = clients.id
-            WHERE devices.status = 'open' AND clients.user_id = ${userId}
+            WHERE devices.status = 'open'
             ) AS openDevicesQuery,
             (
             SELECT COUNT(*) as openQuestionsCount FROM questions
             JOIN clients ON questions.client_id = clients.id
-            WHERE questions.status = 'open' AND clients.user_id = ${userId}
+            WHERE questions.status = 'open'
             ) AS openQuestionsQuery,
             
             (
             SELECT COUNT(*) as delayedQuestionsCount from questions
             JOIN clients ON questions.client_id = clients.id
-            WHERE questions.status = 'open' AND DATE_ADD(questions.date, INTERVAL 10 DAY) < NOW() AND clients.user_id = ${userId}
+            WHERE questions.status = 'open' AND DATE_ADD(questions.date, INTERVAL 10 DAY) < NOW()
             ) AS delayedQuestionsQuery,
             
             (
             SELECT COUNT(*) as delayedDevicesCount from devices
             JOIN clients ON devices.client_id = clients.id
-            WHERE devices.status = 'open' AND DATE_ADD(devices.date, INTERVAL 10 DAY) < NOW() AND clients.user_id = ${userId}
+            WHERE devices.status = 'open' AND DATE_ADD(devices.date, INTERVAL 10 DAY) < NOW()
             ) AS delayedDevicesQuery
         )`, { type: sequelize.QueryTypes.SELECT})
         .then(statsArray => {
