@@ -10,7 +10,8 @@ module.exports = {
         password: process.env.DB_PASSWORD
     },
     logging: {
-        rollbarToken: process.env.ROLLBAR_TOKEN
+        rollbarToken: process.env.ROLLBAR_TOKEN,
+        sentryDSN: process.env.SENTRY_DSN
     },
     disableSignup: process.env.DISABLE_SIGNUP === 'true',
     jwtSecret: process.env.JWT_SECRET,

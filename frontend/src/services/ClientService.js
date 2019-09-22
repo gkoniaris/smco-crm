@@ -45,7 +45,6 @@ class ClientService extends ApiService {
         const id = data.id
         delete data.id
 
-        console.log(data)
         return super.update(id, data)
     }
 }
