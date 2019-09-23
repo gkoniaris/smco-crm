@@ -1,4 +1,5 @@
 require('dotenv').config()
+const config = require('./config.js')
 const Sentry = require('@sentry/node')
 Sentry.init({ dsn: config.logging.sentryDSN });
 
