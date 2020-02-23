@@ -12,6 +12,9 @@
             <li class="nav-item">
                 <router-link :to="{name: 'clientQuestions', params: {id: client.id}}" class="nav-link" v-bind:class="{active: $route.name === 'clientQuestions'}">Ερωτήσεις</router-link>
             </li>
+            <li class="nav-item">
+                <router-link :to="{name: 'clientVisits', params: {id: client.id}}" class="nav-link" v-bind:class="{active: $route.name === 'clientVisits'}">Επισκέψεις</router-link>
+            </li>
         </ul>
         <div class="tab-content py-2">
             <router-view v-if="client.id"></router-view>

@@ -52,6 +52,7 @@ class ClientService {
 
     async get (userId, {sort = 'id', order = 'asc', page = 1, search = null} = {}) {
         const query = {
+            subQuery: false,
             distinct: true,
             where: {
                 [Op.and]: []
@@ -69,7 +70,20 @@ class ClientService {
         }
 
         if(search) {
-            query.where[Op.and].push(sequelize.literal(`MATCH(first_name, last_name) AGAINST ('(${search}*) ("${search}")' IN BOOLEAN MODE)`))
+            let searchQuery = search.split(' ').join('* +')
+            if (!searchQuery.includes('+')) {
+                searchQuery = '+' + searchQuery + '*'
+            } else {
+                searchQuery = '+' + searchQuery + '*'
+            }
+
+            query.where[Op.and].push({
+                [Op.or]: [
+                    sequelize.literal(`MATCH(last_name, first_name) AGAINST ("${searchQuery}" IN BOOLEAN MODE)`),
+                    sequelize.literal(`phones.phone LIKE "${search}%"`),
+                    sequelize.literal(`addresses.address LIKE "%${search}%"`)
+                ]
+            })
         }
 
         return Client.findAndCountAll(query)

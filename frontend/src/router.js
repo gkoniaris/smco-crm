@@ -10,6 +10,7 @@ import ClientsViewProfile from './components/Clients/Profile'
 import ClientsEditProfile from './components/Clients/Edit'
 import ClientsViewDevices from './components/Clients/Devices'
 import ClientsViewQuestions from './components/Clients/Questions'
+import ClientsViewVisits from './components/Clients/Visits'
 import QuestionsIndex from './components/Questions/Index'
 import QuestionsCreate from './components/Questions/Create'
 import QuestionView from './components/Questions/View'
@@ -76,6 +77,13 @@ const router =  new Router({
           name: 'clientQuestions',
           path: 'questions',
           component: ClientsViewQuestions
+        },
+        {
+          // UserProfile will be rendered inside User's <router-view>
+          // when /user/:id/profile is matched
+          name: 'clientVisits',
+          path: 'visits',
+          component: ClientsViewVisits
         }
       ]
     },
