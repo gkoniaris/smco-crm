@@ -9,7 +9,7 @@ const Phone = require('../models/phone.js')
 const VisitAppointment = require('../models/Associations/visitAppointment')
 const config = require('../config.js')
 
-const visitsLimit = 20
+const visitsLimit = 50
 
 class VisitService {
     async find (userId, id) {
